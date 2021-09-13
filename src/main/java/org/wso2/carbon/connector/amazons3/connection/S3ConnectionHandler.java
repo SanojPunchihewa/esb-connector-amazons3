@@ -5,7 +5,6 @@ import org.wso2.carbon.connector.amazons3.pojo.ConnectionConfiguration;
 import org.wso2.carbon.connector.core.connection.Connection;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
-import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.http.urlconnection.UrlConnectionHttpClient;
 import software.amazon.awssdk.regions.Region;
@@ -37,7 +36,6 @@ public class S3ConnectionHandler implements Connection {
                     .build();
         } else {
             return S3Client.builder()
-                    .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
                     .region(Region.of(region))
                     .httpClientBuilder(UrlConnectionHttpClient.builder())
                     .build();
